@@ -2,13 +2,14 @@
 
 ## users テーブル
 
-| Column   | Type   | Option      |
-| -------- | ------ | ----------- |
-| nickname | string | null: false |
-| email    | string | null: false |
-| password | string | null: false |
-| name     | string | null: false |
-| birthday | string | null: false |
+| Column     | Type   | Option      |
+| ---------- | ------ | ----------- |
+| nickname   | string | null: false |
+| email      | string | null: false |
+| password   | string | null: false |
+| last_name  | string | null: false |
+| first_name | string | null: false |
+| birthday   | string | null: false |
 
 ### Association
 
