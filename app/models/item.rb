@@ -8,14 +8,20 @@ class Item < ApplicationRecord
   belongs_to :shipping_address
   belongs_to :day
 
+  VALID_PRICEL_HALF = /\A[0-9]+\z/
+
   with_options presence: true do
     validates :title
+    validates :image
     validates :description
-    validates :price
-    validates :category_id, numericality: { other_than: 1 }
-    validates :status_id, numericality: { other_than: 1 }
-    validates :shipping_change_id, numericality: { other_than: 1 }
-    validates :shipping_address_id, numericality: { other_than: 1 }
-    validates :day_id, numericality: { other_than: 1 }
+    validates :price, format: { with: VALID_PRICEL_HALF }, length: { minimum: 3, maxinum: 7 }, numericality: { only_integer: true,
+                                                                                                               greater_than: 300, less_than: 9_999_999 }
+  end
+  with_options numericality: { other_than: 1 } do
+    validates :category_id
+    validates :status_id
+    validates :shipping_change_id
+    validates :shipping_address_id
+    validates :day_id
   end
 end

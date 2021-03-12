@@ -53,19 +53,19 @@ RSpec.describe User, type: :model do
         @user.password = 'aaaaaa'
         @user.password_confirmation = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is invalid")
+        expect(@user.errors.full_messages).to include('Password is invalid')
       end
       it 'パスワードに数字のみでは登録できないこと' do
         @user.password = '111111'
         @user.password_confirmation = '111111'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is invalid")
+        expect(@user.errors.full_messages).to include('Password is invalid')
       end
       it 'パスワードに全角では登録できないこと' do
         @user.password = '１２３４５６'
         @user.password_confirmation = '１２３４５６'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is invalid")
+        expect(@user.errors.full_messages).to include('Password is invalid')
       end
       it 'パスワードは、確認を含めて2回入力しないと登録できない' do
         @user.password_confirmation = ''
@@ -78,51 +78,51 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
 
-      #本人確認情報
+      # 本人確認情報
       it '名字が空だと登録できない' do
-      @user.last_name = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Last name can't be blank")
+        @user.last_name = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name can't be blank")
       end
       it '名前が空だと登録できない' do
-      @user.first_name = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include("First name can't be blank")
+        @user.first_name = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name can't be blank")
       end
       it '名字は、全角（漢字・ひらがな・カタカナ）での入力が必須である' do
-      @user.last_name = 'nakamura'
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Last name is invalid")
+        @user.last_name = 'nakamura'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last name is invalid')
       end
       it '名前は、全角（漢字・ひらがな・カタカナ）での入力が必須である' do
-      @user.first_name = 'hironobu'
-      @user.valid?
-      expect(@user.errors.full_messages).to include( "First name is invalid")
+        @user.first_name = 'hironobu'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('First name is invalid')
       end
       it '名字（フリガナ）が空だと登録できない' do
-      @user.kana_last_name = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Kana last name can't be blank")
+        @user.kana_last_name = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Kana last name can't be blank")
       end
       it '名前（フリガナ）が空だと登録できない' do
-      @user.kana_first_name = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Kana first name can't be blank")
+        @user.kana_first_name = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Kana first name can't be blank")
       end
       it 'ユーザーの名字のフリガナは、全角（カタカナ）での入力が必須であること' do
-      @user.kana_last_name = '山田'
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Kana last name is invalid")
+        @user.kana_last_name = '山田'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Kana last name is invalid')
       end
       it 'ユーザーの名字のフリガナは、全角（カタカナ）での入力が必須であること' do
-      @user.kana_first_name = '太郎'
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Kana first name is invalid")
+        @user.kana_first_name = '太郎'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Kana first name is invalid')
       end
       it '生年月日が空だと登録できない' do
-      @user.birthday = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include("Birthday can't be blank")
+        @user.birthday = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Birthday can't be blank")
       end
     end
   end

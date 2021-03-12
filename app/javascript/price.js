@@ -1,6 +1,6 @@
 function price() {
   const value = document.getElementById("item-price");
-  value.addEventListener('keyup', () => {
+  value.addEventListener('input', () => {
     const taxValue = document.getElementById("add-tax-price");
     taxValue.innerHTML = Math.floor(value.value * 0.1)
 
