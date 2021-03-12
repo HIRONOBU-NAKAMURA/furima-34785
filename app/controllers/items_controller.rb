@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
-  # あとで、authenticate_user!を記述するため、コメントアウト
-  # before_action :move_to_index, except: [:index, :show]
+  before_action :authenticate_user!, only: [:new,:destroy]
   def index
     @items = Item.order("created_at DESC")
   end
