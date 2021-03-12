@@ -18,4 +18,5 @@ class User < ApplicationRecord
                                 format: { with: VALID_KANA_NAME }
     validates :birthday
   end
+  has_many :items
 end
