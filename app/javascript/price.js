@@ -6,7 +6,7 @@ function price() {
 
     const profitValue = document.getElementById("profit");
 
-    profitValue.innerHTML = Math.floor(value.value) - Math.floor(value.value * 0.1)
+    profitValue.innerHTML = Math.floor(value.value - (value.value * 0.1))
   })
 }
 window.addEventListener('load', price);
