@@ -14,7 +14,7 @@ class Item < ApplicationRecord
     validates :title
     validates :image
     validates :description
-    validates :price, format: { with: VALID_PRICEL_HALF }, length: { minimum: 3, maxinum: 7 }, numericality: { only_integer: true,
+    validates :price, format: { with: VALID_PRICEL_HALF }, numericality: { only_integer: true,
                                                                                                                greater_than: 300, less_than: 9_999_999 }
   end
   with_options numericality: { other_than: 1 } do
