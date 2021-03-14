@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_many :purchase_records
+- has_many :donation
 
 ## items テーブル
 
@@ -35,9 +35,9 @@
 ### Association
 
 - belongs_to :user
-- has_one :purchase_record
+- has_one :donation
 
-## purchase_record テーブル
+## donations テーブル
 
 | Column | Type       | Option                         |
 | ------ | ---------- | ------------------------------ |
@@ -48,20 +48,20 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :shipping_address
+- has_one :address
 
-## shipping_address テーブル
+## addresses テーブル
 
-| Column          | Type       | Option                         |
-| --------------- | ---------- | ------------------------------ |
-| postal_code     | string     | null: false                    |
-| prefecture_id   | integer    | null: false                    |
-| city            | string     | null: false                    |
-| address         | string     | null: false                    |
-| building_name   | string     |                                |
-| phone_number    | string     | null: false                    |
-| purchase_record | references | null: false, foreign_key: true |
+| Column        | Type       | Option                         |
+| ------------- | ---------- | ------------------------------ |
+| postal_code   | string     | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| city          | string     | null: false                    |
+| address       | string     | null: false                    |
+| building_name | string     |                                |
+| phone_number  | string     | null: false                    |
+| donation      | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :purchase_record
+- belongs_to :donation
