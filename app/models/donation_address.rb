@@ -1,14 +1,14 @@
 class DonationAddress
   include ActiveModel::Model
   extend ActiveHash::Associations::ActiveRecordExtensions
-  attr_accessor :postal_code,:shipping_address, :city, :address_number,:building_name,:phone_number,:user_id,:item_id,:prefecture
+  attr_accessor :postal_code,:shipping_address, :city, :address_number,:building_name,:phone_number,:user_id,:item_id,:prefecture,:token
 
   with_options presence: true do
     validates :postal_code,format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :city
     validates :address_number
-    validates :phone_number,format: { with: /\A[0-9]+\z/ }, numericality: { only_integer: true,max_length: 11 },length: { maximum: 11 }
-    # validates :phone_number,format: { with: \A0[5789]0[-]?\d{4}[-]?\d{4}\z }, numericality: { only_integer: true,max_length: 11 }
+    validates :phone_number,format: { with: /\A[0-9]+\z/ }, numericality: { only_integer: true },length: { maximum: 11 }
+    validates :token
     validates :user_id
     validates :item_id
   end
