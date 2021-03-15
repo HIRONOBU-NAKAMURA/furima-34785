@@ -1,9 +1,9 @@
 class DonationsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index,:create]
+  before_action :move_to_root, only: [:index,:create]
   def index
     @donation_address = DonationAddress.new
-    redirect_to root_path if  current_user.id == @donation_address_find.user_id
   end
 
   def create
@@ -13,7 +13,6 @@ class DonationsController < ApplicationController
       @donation_address.save
       redirect_to root_path
     else
-      @donation_address_find = Item.find(params[:item_id])
       render :index
     end
   end
@@ -37,5 +36,9 @@ class DonationsController < ApplicationController
       card: donation_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def move_to_root
+    redirect_to root_path if  current_user.id == @donation_address_find.user_id
   end
 end
