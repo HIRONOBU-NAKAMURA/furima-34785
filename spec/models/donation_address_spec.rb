@@ -13,6 +13,11 @@ RSpec.describe DonationAddress, type: :model do
       it 'postal_code,:shipping_address,:city,:address_number,:building_name,:phone_number,:tokenが存在すれば登録できる' do
         expect(@donation_address).to be_valid
       end
+
+      it '建物番号は空でも登録できること' do
+        @donation_address.building_name = ""
+        expect(@donation_address).to be_valid
+      end
     end
 
     context '商品を購入できないとき' do
@@ -58,10 +63,28 @@ RSpec.describe DonationAddress, type: :model do
         expect(@donation_address.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
       end
 
+      it '電話番号が英数字混合では登録できないこと' do
+        @donation_address.phone_number = '1a1a1a1a1a1a'
+        @donation_address.valid?
+        expect(@donation_address.errors.full_messages).to include("Phone number is not a number")
+      end
+
       it 'tokenが空では登録できないこと' do
         @donation_address.token = nil
         @donation_address.valid?
         expect(@donation_address.errors.full_messages).to include("Token can't be blank")
+      end
+
+      it 'user_idが空では購入できないこと' do
+        @donation_address.user_id = nil
+        @donation_address.valid?
+        expect(@donation_address.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idが空では登録できないこと' do
+        @donation_address.item_id = nil
+        @donation_address.valid?
+        expect(@donation_address.errors.full_messages).to include("Item can't be blank")
       end
     end
   end

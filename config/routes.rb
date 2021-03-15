@@ -5,6 +5,5 @@ Rails.application.routes.draw do
   resources :items do
     resources :donations, only: [:index,:create]
   end
-  # resources :donations, only: [:index,:create]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
